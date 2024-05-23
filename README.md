@@ -56,17 +56,18 @@ A web application for managing and displaying Valorant map picks and bans betwee
 
 ## File Structure
 
-/path/to/your/project/
-├── index.php
-├── display.php
-├── saveTeams.php
-├── resetTeams.php
-├── getTeams.php
-├── submitChoice.php
-├── resetChoices.php
-├── getChoices.php
-├── teams.json (auto-generated)
-├── choices.json (auto-generated)
+```/path/to/your/project/
+    ├── index.php
+    ├── resetTeams.php
+    ├── saveTeams.php
+    ├── display.php
+    ├── getTeams.php
+    ├── submitChoice.php
+    ├── resetChoices.php
+    ├── getChoices.php
+    ├── teams.json (auto-generated)
+    ├── choices.json (auto-generated)
+```
 
 ## Contributing
 
