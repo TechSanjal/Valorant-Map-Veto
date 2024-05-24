@@ -133,7 +133,7 @@
 <body class="text-white">
     <div class="container mx-auto py-10">
         <h1 class="text-5xl font-bold mb-12 text-center">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">Valorant Map Picks and Bans</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500"></span>
         </h1>
         <div id="maps-container" class="flex flex-nowrap justify-center gap-4 overflow-x-auto">
             <!-- 7 map boxes with default states -->
