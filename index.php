@@ -104,6 +104,8 @@
                     body: JSON.stringify({ team1, team2 })
                 }).then(response => response.json()).then(data => {
                     if (data.success) {
+                        localStorage.setItem('team1', team1);
+                        localStorage.setItem('team2', team2);
                         loadTeams();
                         document.getElementById('team-names-form').classList.add('hidden');
                         document.getElementById('map-pick-ban-form').classList.remove('hidden');
@@ -125,6 +127,8 @@
                     document.getElementById('team2').value = '';
                     document.getElementById('team-names-form').classList.remove('hidden');
                     document.getElementById('map-pick-ban-form').classList.add('hidden');
+                    localStorage.removeItem('team1');
+                    localStorage.removeItem('team2');
                 } else {
                     alert('Failed to reset team names.');
                 }
@@ -132,15 +136,16 @@
         }
 
         function loadTeams() {
-            fetch('getTeams.php').then(response => response.json()).then(data => {
-                if (data.team1 && data.team2) {
-                    const teamSelect = document.getElementById('team');
-                    teamSelect.innerHTML = `
-                        <option value="${data.team1}">${data.team1}</option>
-                        <option value="${data.team2}">${data.team2}</option>
-                    `;
-                }
-            });
+            const team1 = localStorage.getItem('team1');
+            const team2 = localStorage.getItem('team2');
+
+            if (team1 && team2) {
+                const teamSelect = document.getElementById('team');
+                teamSelect.innerHTML = `
+                    <option value="${team1}">${team1}</option>
+                    <option value="${team2}">${team2}</option>
+                `;
+            }
         }
 
         function updateSideSelect() {
@@ -192,13 +197,14 @@
         }
 
         window.onload = function () {
-            fetch('getTeams.php').then(response => response.json()).then(data => {
-                if (data.team1 && data.team2) {
-                    loadTeams();
-                    document.getElementById('team-names-form').classList.add('hidden');
-                    document.getElementById('map-pick-ban-form').classList.remove('hidden');
-                }
-            });
+            const team1 = localStorage.getItem('team1');
+            const team2 = localStorage.getItem('team2');
+
+            if (team1 && team2) {
+                loadTeams();
+                document.getElementById('team-names-form').classList.add('hidden');
+                document.getElementById('map-pick-ban-form').classList.remove('hidden');
+            }
         }
     </script>
 </body>

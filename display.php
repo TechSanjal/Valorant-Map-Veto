@@ -160,7 +160,8 @@
             "Ascent": "https://wiser.com.np/map/maps/Loading_Screen_Ascent.webp",
             "Icebox": "https://wiser.com.np/map/maps/Loading_Screen_Icebox.webp",
             "Breeze": "https://wiser.com.np/map/maps/Loading_Screen_Breeze.webp",
-            "Sunset": "https://wiser.com.np/map/maps/Loading_Screen_Sunset.webp"
+            "Sunset": "https://wiser.com.np/map/maps/Loading_Screen_Sunset.webp",
+            "Fracture":"https://wiser.com.np/map/maps/Loading_Screen_Fracture.webp"
         };
 
         let previousChoices = [];
@@ -172,7 +173,7 @@
                     console.log('Choices received:', choices); // Log the received choices
                     const container = document.getElementById('maps-container');
 
-                    choices.forEach((choice, index) => {
+                    choices.forEach(choice => {
                         let mapBox = Array.from(container.children).find(box => box.dataset.map === choice.map);
 
                         if (!mapBox) {
@@ -188,7 +189,6 @@
                             const mapNameEl = mapBox.querySelector('.map-name');
 
                             console.log('Updating map box:', {
-                                index,
                                 map: choice.map,
                                 team: choice.team,
                                 action: choice.action,
@@ -202,16 +202,18 @@
                             mapNameEl.textContent = choice.map;
                             mapNameEl.style.display = 'block';
                             teamEl.textContent = `${choice.team} ${choice.action === 'Pick' ? 'picked' : 'banned'}`;
-                            if (choice.action === 'Pick') {
-                                sideEl.textContent = `${choice.oppositeTeam} chose ${choice.side}`;
-                            } else {
-                                sideEl.textContent = '';
-                            }
+                            sideEl.textContent = choice.action === 'Pick' ? `${choice.oppositeTeam} chose ${choice.side}` : '';
                             mapBox.querySelector('.map-info').style.opacity = 1; // Show the map info
                             mapBox.style.background = 'none'; // Remove the gradient background
 
                             // Check if the choice is new or updated
-                            const isUpdated = !previousChoices.some(prev => prev.map === choice.map && prev.team === choice.team && prev.action === choice.action && prev.side === choice.side && prev.oppositeTeam === choice.oppositeTeam);
+                            const isUpdated = !previousChoices.some(prev => 
+                                prev.map === choice.map && 
+                                prev.team === choice.team && 
+                                prev.action === choice.action && 
+                                prev.side === choice.side && 
+                                prev.oppositeTeam === choice.oppositeTeam
+                            );
 
                             if (isUpdated) {
                                 // Add animation class for the updated map box
