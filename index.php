@@ -15,23 +15,17 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label for="team1" class="block text-gray-700">Team 1:</label>
-                    <input type="text" id="team1"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter Team 1 Name">
+                    <input type="text" id="team1" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Team 1 Name">
                 </div>
                 <div>
                     <label for="team2" class="block text-gray-700">Team 2:</label>
-                    <input type="text" id="team2"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter Team 2 Name">
+                    <input type="text" id="team2" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Team 2 Name">
                 </div>
             </div>
             <div class="flex justify-between">
-                <button onclick="saveTeamNames()"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save
+                <button onclick="saveTeamNames()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save
                     Team Names</button>
-                <button onclick="resetTeamNames()"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
+                <button onclick="resetTeamNames()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
                     Team Names</button>
             </div>
         </div>
@@ -40,14 +34,11 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label for="team" class="block text-gray-700">Team:</label>
-                    <select id="team"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"></select>
+                    <select id="team" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"></select>
                 </div>
                 <div>
                     <label for="action" class="block text-gray-700">Action:</label>
-                    <select id="action"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        onchange="updateSideSelect()">
+                    <select id="action" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" onchange="updateSideSelect()">
                         <option value="Pick">Pick</option>
                         <option value="Ban">Ban</option>
                     </select>
@@ -56,10 +47,9 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label for="map" class="block text-gray-700">Map:</label>
-                    <select id="map"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    <select id="map" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         <option value="Bind">Bind</option>
-                        <option value="Haven">Haven</option>
+                        <option value="Sunset">Sunset</option>
                         <option value="Split">Split</option>
                         <option value="Ascent">Ascent</option>
                         <option value="Icebox">Icebox</option>
@@ -69,22 +59,17 @@
                 </div>
                 <div>
                     <label for="side" class="block text-gray-700">Opponent Side:</label>
-                    <select id="side"
-                        class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        disabled>
+                    <select id="side" class="w-full px-4 py-2 mt-1 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" disabled>
                         <option value="Attack">Attack</option>
                         <option value="Defense">Defense</option>
                     </select>
                 </div>
             </div>
             <div class="flex justify-between">
-                <button onclick="submitChoice()"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-                <button onclick="resetChoices()"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
+                <button onclick="submitChoice()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                <button onclick="resetChoices()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
                     Choices</button>
-                <button onclick="resetAll()"
-                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
+                <button onclick="resetAll()" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset
                     All</button>
             </div>
         </div>
@@ -101,7 +86,10 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ team1, team2 })
+                    body: JSON.stringify({
+                        team1,
+                        team2
+                    })
                 }).then(response => response.json()).then(data => {
                     if (data.success) {
                         localStorage.setItem('team1', team1);
@@ -162,7 +150,13 @@
             const oppositeTeam = (team === localStorage.getItem('team1')) ? localStorage.getItem('team2') : localStorage.getItem('team1');
             const side = action === 'Pick' ? document.getElementById('side').value : '';
 
-            const choice = { team, action, side: action === 'Pick' ? side : '', map, oppositeTeam: action === 'Pick' ? oppositeTeam : '' };
+            const choice = {
+                team,
+                action,
+                side: action === 'Pick' ? side : '',
+                map,
+                oppositeTeam: action === 'Pick' ? oppositeTeam : ''
+            };
             fetch('submitChoice.php', {
                 method: 'POST',
                 headers: {
@@ -196,7 +190,7 @@
             alert('All data reset!');
         }
 
-        window.onload = function () {
+        window.onload = function() {
             const team1 = localStorage.getItem('team1');
             const team2 = localStorage.getItem('team2');
 
