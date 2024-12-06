@@ -154,14 +154,23 @@
 
     <script>
         const mapsData = {
-            "Lotus": "https://wiser.com.np/map/maps/Loading_Screen_Lotus.webp",
-            "Bind": "https://wiser.com.np/map/maps/Loading_Screen_Bind.webp",
-            "Split": "https://wiser.com.np/map/maps/Loading_Screen_Split.webp",
+            "Abyss": "https://wiser.com.np/map/maps/Loading_Screen_Abyss.webp",
             "Ascent": "https://wiser.com.np/map/maps/Loading_Screen_Ascent.webp",
-            "Icebox": "https://wiser.com.np/map/maps/Loading_Screen_Icebox.webp",
-            "Breeze": "https://wiser.com.np/map/maps/Loading_Screen_Breeze.webp",
+            "Bind": "https://wiser.com.np/map/maps/Loading_Screen_Bind.webp",
+            "Haven": "https://wiser.com.np/map/maps/Loading_Screen_Haven.webp",
+            "Pearl": "https://wiser.com.np/map/maps/Loading_Screen_Pearl.webp",
+            "Split": "https://wiser.com.np/map/maps/Loading_Screen_Split.webp",
             "Sunset": "https://wiser.com.np/map/maps/Loading_Screen_Sunset.webp",
-            "Fracture":"https://wiser.com.np/map/maps/Loading_Screen_Fracture.webp"
+
+
+            // "Lotus": "https://wiser.com.np/map/maps/Loading_Screen_Lotus.webp",
+            // "Bind": "https://wiser.com.np/map/maps/Loading_Screen_Bind.webp",
+            // "Split": "https://wiser.com.np/map/maps/Loading_Screen_Split.webp",
+            // "Ascent": "https://wiser.com.np/map/maps/Loading_Screen_Ascent.webp",
+            // "Icebox": "https://wiser.com.np/map/maps/Loading_Screen_Icebox.webp",
+            // "Breeze": "https://wiser.com.np/map/maps/Loading_Screen_Breeze.webp",
+            // "Sunset": "https://wiser.com.np/map/maps/Loading_Screen_Sunset.webp",
+            // "Fracture":"https://wiser.com.np/map/maps/Loading_Screen_Fracture.webp"
         };
 
         let previousChoices = [];
@@ -207,11 +216,11 @@
                             mapBox.style.background = 'none'; // Remove the gradient background
 
                             // Check if the choice is new or updated
-                            const isUpdated = !previousChoices.some(prev => 
-                                prev.map === choice.map && 
-                                prev.team === choice.team && 
-                                prev.action === choice.action && 
-                                prev.side === choice.side && 
+                            const isUpdated = !previousChoices.some(prev =>
+                                prev.map === choice.map &&
+                                prev.team === choice.team &&
+                                prev.action === choice.action &&
+                                prev.side === choice.side &&
                                 prev.oppositeTeam === choice.oppositeTeam
                             );
 
@@ -222,7 +231,9 @@
                                 // Remove the animation class after the animation completes
                                 mapBox.addEventListener('animationend', () => {
                                     mapBox.classList.remove('animate-change');
-                                }, { once: true }); // Ensure the event listener is removed after it runs
+                                }, {
+                                    once: true
+                                }); // Ensure the event listener is removed after it runs
                             }
                         }
                     });
@@ -233,7 +244,7 @@
                 .catch(error => console.error('Error fetching choices:', error));
         }
 
-        window.onload = function () {
+        window.onload = function() {
             loadChoices();
             setInterval(loadChoices, 5000); // Refresh every 5 seconds
         }

@@ -116,13 +116,16 @@
                 <div>
                     <label for="map" class="block">Map:</label>
                     <select id="map" class="select w-full px-4 py-2 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="Bind">Bind</option>
-                        <option value="Sunset">Sunset</option>
-                        <option value="Split">Split</option>
+                        <option value="Abyss">Abyss</option>
                         <option value="Ascent">Ascent</option>
-                        <option value="Icebox">Icebox</option>
+                        <option value="Bind">Bind</option>
+                        <option value="Haven">Haven</option>
+                        <option value="Pearl">Pearl</option>
+                        <option value="Split">Split</option>
+                        <option value="Sunset">Sunset</option>
+                        <!-- <option value="Icebox">Icebox</option>
                         <option value="Breeze">Breeze</option>
-                        <option value="Lotus">Lotus</option>
+                        <option value="Lotus">Lotus</option> -->
                     </select>
                 </div>
                 <div>
@@ -152,7 +155,10 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ team1, team2 })
+                    body: JSON.stringify({
+                        team1,
+                        team2
+                    })
                 }).then(response => response.json()).then(data => {
                     if (data.success) {
                         localStorage.setItem('team1', team1);
@@ -213,7 +219,13 @@
             const oppositeTeam = (team === localStorage.getItem('team1')) ? localStorage.getItem('team2') : localStorage.getItem('team1');
             const side = action === 'Pick' ? document.getElementById('side').value : '';
 
-            const choice = { team, action, side: action === 'Pick' ? side : '', map, oppositeTeam: action === 'Pick' ? oppositeTeam : '' };
+            const choice = {
+                team,
+                action,
+                side: action === 'Pick' ? side : '',
+                map,
+                oppositeTeam: action === 'Pick' ? oppositeTeam : ''
+            };
             fetch('submitChoice.php', {
                 method: 'POST',
                 headers: {
@@ -249,7 +261,7 @@
             alert('All data reset!');
         }
 
-        window.onload = function () {
+        window.onload = function() {
             const team1 = localStorage.getItem('team1');
             const team2 = localStorage.getItem('team2');
 
